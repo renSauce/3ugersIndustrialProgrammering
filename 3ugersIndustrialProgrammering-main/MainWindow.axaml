@@ -1,0 +1,87 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:Class="SystemLogin.MainWindow"
+        xmlns:local="clr-namespace:SystemLogin"
+        x:DataType="local:MainWindow"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Title="SystemLogin">
+    <Window.Styles>
+        <Style Selector="TextBox, Button, CheckBox, StackPanel">
+            <Setter Property="Margin" Value="5" />
+        </Style>
+        <Style Selector="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </Window.Styles>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TabControl Name="TabControl">
+            <TabItem Header="🔑Login" Name="LoginTab">
+                <StackPanel>
+                    <TextBox Name="LoginUsername" Watermark="username">admin</TextBox>
+                    <TextBox Name="LoginPassword" Watermark="password" PasswordChar="●">admin</TextBox>
+                    <Button Click="LoginButton_OnClick">Login</Button>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="🦾Robot" Name="RobotTab">
+                <StackPanel Margin="12" Spacing="10">
+
+  <TextBlock Text="Sorting MVP (Mocks)" FontWeight="Bold" FontSize="16"/>
+
+  <StackPanel Orientation="Horizontal" Spacing="10">
+    <TextBlock Text="Selected color:" VerticalAlignment="Center"/>
+    <ComboBox x:Name="ColorComboBox" Width="160" SelectedIndex="0">
+      <ComboBoxItem Content="Red"/>
+      <ComboBoxItem Content="Green"/>
+      <ComboBoxItem Content="Blue"/>
+    </ComboBox>
+  </StackPanel>
+
+  <StackPanel Orientation="Horizontal" Spacing="10">
+    <Button x:Name="StartSortingButton" Content="Start Sorting" Width="140"/>
+    <Button x:Name="StopSortingButton" Content="Stop Sorting" Width="140" IsEnabled="False"/>
+    <Button x:Name="SimulateArrivalButton" Content="Simulate Block Arrived" Width="200" IsEnabled="False"/>
+  </StackPanel>
+
+  <TextBlock x:Name="RobotStatusText" Text="Status: Stopped" />
+
+</StackPanel>
+
+            </TabItem>
+            <TabItem Header="👥Users" Name="UsersTab">
+                <StackPanel>
+                    <TextBlock>Create User</TextBlock>
+                    <TextBox Name="CreateUserUsername" Watermark="username" />
+                    <TextBox Name="CreateUserPassword" Watermark="password" PasswordChar="●" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock>Is admin</TextBlock>
+                        <CheckBox Name="CreateUserIsAdmin" />
+                    </StackPanel>
+                    <Button Click="CreateUserButton_OnClick">Register</Button>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="🛢Database" Name="DatabaseTab">
+                <StackPanel>
+                    <Button Click="RecreateDatabaseButton_OnClick">Recreate default database</Button>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+        <Button Name="LogoutButton" IsVisible="False" Click="LogoutButton_OnClick" HorizontalAlignment="Right"
+                VerticalAlignment="Top">
+            Logout
+        </Button>
+        <Border Grid.Row="1" Background="LightGray" BorderBrush="Black"
+                BorderThickness="0,1,0,1" Padding="10">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <TextBlock Name="LogOutput" VerticalAlignment="Top" TextWrapping="Wrap" FontFamily="Consolas" />
+            </ScrollViewer>
+        </Border>
+        <Button Grid.Row="2" Click="ClearLogButton_OnClick">Clear</Button>
+    </Grid>
+</Window>
